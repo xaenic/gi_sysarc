@@ -20,6 +20,7 @@
                 {
                     $user = $check->fetch_assoc();
                     $_SESSION['firstname'] = $user['firstname'];
+                    $_SESSION['session'] = $user['sessions'];
                     $_SESSION['id'] = $user['id'];
                     header("Location: ./");
                 }else {

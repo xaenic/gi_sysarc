@@ -70,7 +70,8 @@ body {
 <div id="main">
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span> 
 
-<h1 style="text-align:center; font-size:30px; font-weight:strong">Welcome Student!</h1> 
+<h1 style="text-align:center; font-size:30px; font-weight:strong">Welcome Student!</h1>
+ 
 <br>
 <center>
     <div style="padding:50px; background-color:#E0DFE2; width:500px; height: 250; border-radius: 25px; text-align:left" class="relative">

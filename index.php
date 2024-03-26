@@ -11,7 +11,7 @@ if(isset($_SESSION['role']))
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
@@ -79,7 +79,8 @@ body {
 <div id="main">
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span> 
 
-<h1 style="text-align:center; font-size:30px; font-weight:strong">Welcome <?php echo $_SESSION['firstname'];?>!</h1> 
+<h1 style="text-align:center; font-size:30px; font-weight:strong">Welcome <?php echo $_SESSION['firstname'];?>!</h1>
+<span class="text-xs font-semibold px-2 p-1 bg-purple-500 text-white rounded-md"><?php echo $_SESSION['session'];?> Sessions Available</span> 
 <br>
 <center>
     <div style="padding:50px; background-color:#E0DFE2; width:500px; height: 250; border-radius: 25px; text-align:left" class="relative">
