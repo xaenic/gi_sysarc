@@ -1,0 +1,50 @@
+/* Google Font Link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.main {
+  width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  padding: 120px 24px 160px;
+  pointer-events: none;
+}
+
+.main::before {
+  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
+  position: absolute;
+  content: "";
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.background {
+  height: -moz-fit-content;
+  height: fit-content;
+  z-index: 3;
+  max-width: 640px;
+  background-image: radial-gradient(at 27% 37%, #3a8bfd 0, transparent 0),
+    radial-gradient(at 97% 21%, #8f93ff 0, transparent 50%),
+    radial-gradient(at 52% 99%, #8f93ff 0, transparent 50%),
+    radial-gradient(at 10% 29%, #8f93ff 0, transparent 50%),
+    radial-gradient(at 97% 96%, #8f93ff 0, transparent 50%),
+    radial-gradient(at 33% 50%, #8f93ff 0, transparent 50%),
+    radial-gradient(at 79% 53%, #f69 0, transparent 50%);
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  filter: blur(100px) saturate(150%);
+  top: 80px;
+  opacity: 0.15;
+  /* animation: backgroundAnimate 5s infinite alternate; */
+}
