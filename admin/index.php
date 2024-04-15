@@ -80,7 +80,7 @@ if(isset($_POST['id'])){
 
 <body class="bg-purple-100">
     <?php require './sidebar.php';?>
-    <main class="flex-1 lg:ml-64  lg:mt-5">
+    <main class="flex-1 lg:ml-64  lg:mt-4 mr-4">
        <div class="flex flex-col items-center  rounded-md">
             <form action="" method="get" class="flex justify-end w-full bg-gradient-to-l to-[#8F93FF] from-purple-400  p-5 rounded-md">
                 <div class="flex justify-end w-full">
@@ -105,7 +105,7 @@ if(isset($_POST['id'])){
                 </div>
                   <span class="self-start mt-5 text-xs font-semibold   bg-red-500 text-white rounded-md"><?php echo $message;?></span>
                
-                <div class="self-start flex flex-col gap-2 w-full mt-5">
+                <div class="self-start flex flex-coc:\Users\Allan\Desktop\Bilat\mysql\data - Copy\ibdata1l gap-2 w-full mt-5">
                     <label class="">Purpose of SitIn</label>
                     <select name="purpose" class="text-gray-700 border p-2 rounded-md w-full">
                         <option value="Java">Java</option>

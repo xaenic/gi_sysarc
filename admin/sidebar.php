@@ -3,7 +3,7 @@ $dashboard = isset($_SESSION['role']) ? '/dashboard' : '/admin/dashboard';
 
 ?>
 <aside id="sidebar"
-    class="left-[-1000px] lg:left-0 h-screen pb-36 duration-300 transition-all  w-56 bg-gradient-to-t to-[#8F93FF] from-purple-400 p-5 rounded-xl  lg:m-4 text-gray-100 fixed top-0 left-0 bottom-0   flex-col justify-between">
+    class="left-[-1000px] lg:left-0 h-[805px] pb-36 duration-300 transition-all  w-56 bg-gradient-to-t to-[#8F93FF] from-purple-400 p-5 rounded-xl  lg:m-4 text-gray-100 fixed top-0 left-0 bottom-0   flex-col justify-between">
     <div class="h-full text-white  ">
         <section id="widget_1" class="border-b border-gray-200 pb-4 flex items-center gap-2 justify-center ">
             <img src="../images/ccs_logo.png" class="w-10 h-10" />
