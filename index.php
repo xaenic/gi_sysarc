@@ -5,6 +5,13 @@ if(!isset($_SESSION['firstname']))
   header("location: ./login.php");
 if(isset($_SESSION['role']))
   header("location: ./admin");
+include('connector.php'); 
+
+$id = $_SESSION['id'];
+$select = "SELECT * FROM student WHERE id = '$id'";
+$result = $connection->query($select);
+$user = $result->fetch_assoc();
+$sessions = $user['sessions'];
 ?>
 
 <!DOCTYPE html>
@@ -79,11 +86,13 @@ body {
 <div id="main">
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span> 
 
-<h1 style="text-align:center; font-size:30px; font-weight:strong">Welcome <?php echo $_SESSION['firstname'];?>!</h1>
-<span class="text-xs font-semibold px-2 p-1 bg-purple-500 text-white rounded-md"><?php echo $_SESSION['session'];?> Sessions Available</span> 
+<div class="w-full flex items-center flex-col">
+  <h1 style="text-align:center; font-size:30px; font-weight:strong">Welcome <?php echo $_SESSION['firstname'];?>!</h1>
+<span class="text-xs font-semibold px-2 p-1 bg-purple-500 text-white rounded-md text-center self-center"><?php echo $sessions?> Sessions Available</span> 
+</div>
 <br>
 <center>
-    <div style="padding:50px; background-color:#E0DFE2; width:500px; height: 250; border-radius: 25px; text-align:left" class="relative">
+    <!-- <div style="padding:50px; background-color:#E0DFE2; width:500px; height: 250; border-radius: 25px; text-align:left" class="relative">
     
    <h7 style= "text-align:center"> Find a Schedule </h7> <br>
     <br>
@@ -104,9 +113,9 @@ body {
                 type="time" 
                 id="appt" 
                 onFocus="this.value = '';" 
-                name="appt">
+                name="appt"> -->
 
-      
+<!--       
                 <form action="/action_page.php">
                   <br>
   <label for="fname" style="padding-right: 30px;">Name</label>
@@ -116,7 +125,7 @@ body {
   <label for="lname" style="padding-right: 19px;">Subject</label>
   <input type="text" id="fname" name="fname" style="padding: 5px; border-radius: 8px"> <br>
   <input type="submit" value="Submit">
-</form>
+</form> -->
 </center>
 </div>
 	</div>
