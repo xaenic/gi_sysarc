@@ -24,7 +24,7 @@ $dashboard = isset($_SESSION['role']) ? '/dashboard' : '/admin/dashboard';
         <section id="widget_2" class="mt-5 flex flex-col gap-5">
             <div class="flex gap-2 items-center <?php echo($page == 'Generate Reports' ? 'bg-purple-700' : '' ) ?> text-sm cursor-pointer text-white rounded-lg px-3 p-2">
            <i class="fa-solid fa-file"></i>
-            <a href="./records.php" class="w-full">Generate Reports</a>
+            <a href="./generate.php" class="w-full">Generate Reports</a>
             </div>
         </section>
     </div>

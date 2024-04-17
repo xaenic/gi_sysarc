@@ -105,7 +105,7 @@ if(isset($_POST['id'])){
                 </div>
                   <span class="self-start mt-5 text-xs font-semibold   bg-red-500 text-white rounded-md"><?php echo $message;?></span>
                
-                <div class="self-start flex flex-coc:\Users\Allan\Desktop\Bilat\mysql\data - Copy\ibdata1l gap-2 w-full mt-5">
+                <div class="self-start flex flex-col gap-2 w-full mt-5">
                     <label class="">Purpose of SitIn</label>
                     <select name="purpose" class="text-gray-700 border p-2 rounded-md w-full">
                         <option value="Java">Java</option>
