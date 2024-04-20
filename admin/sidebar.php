@@ -21,6 +21,7 @@ $dashboard = isset($_SESSION['role']) ? '/dashboard' : '/admin/dashboard';
             <a href="./records.php" class="w-full">View Records</a>
             </div>
         </section>
+        <!-- test -->
         <section id="widget_2" class="mt-5 flex flex-col gap-5">
             <div class="flex gap-2 items-center <?php echo($page == 'Generate Reports' ? 'bg-purple-700' : '' ) ?> text-sm cursor-pointer text-white rounded-lg px-3 p-2">
            <i class="fa-solid fa-file"></i>
@@ -30,7 +31,6 @@ $dashboard = isset($_SESSION['role']) ? '/dashboard' : '/admin/dashboard';
     </div>
     <div class=" hover:bg-slate-900 p-2 rounded-lg duration-200 transition-colors ">
         <div class="flex gap-1 justify-center items-center w-full">
-
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                 <path fill="currentColor"
                     d="m17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5M4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4z" />
