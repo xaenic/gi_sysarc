@@ -55,7 +55,7 @@ if(isset($_POST['id'])){
                 }
                     header("Location: ./?search=" . $student['idno']);
             }else {
-                $message = "No available sessions.";
+                $message = '<span class="self-center px-3 p-2 mt-5 text-xs font-semibold   bg-red-500 text-white rounded-md">No Sessions Available</span>';
             }   
     }
    
@@ -103,8 +103,8 @@ if(isset($_POST['id'])){
                     <p class="text-center text-gray-600"><?php echo $student['idno']; ?></p>
                     <span class="text-xs font-semibold px-2 p-1 bg-purple-500 text-white rounded-md"><?php echo $student['sessions'];?> Sessions Available</span>
                 </div>
-                  <span class="self-start mt-5 text-xs font-semibold   bg-red-500 text-white rounded-md"><?php echo $message;?></span>
-               
+                  
+               <?php echo $message;?>
                 <div class="self-start flex flex-col gap-2 w-full mt-5">
                     <label class="">Purpose of SitIn</label>
                     <select name="purpose" class="text-gray-700 border p-2 rounded-md w-full">

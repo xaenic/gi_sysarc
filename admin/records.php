@@ -47,22 +47,16 @@ $connection->close();
 
         <div class="">
             <h1 class="font-medium text-lg text-purple-700">Session Records</h1>
-            <div class="grid grid-cols-4 mt-3">
-                <form action="" method="get" class="flex  rounded-md">
+            <div class="grid grid-cols-4 mt-3 gap-4">
+                <div action="" method="get" class="flex  rounded-md">
                 <div class="items-center flex justify-start w-full shadow-lg border  rounded-md bg-white">
-                    <input name="search" class="px-3 p-1 outline-none  bg-transparent " tpye="text" value="" placeholder="Search student..."/>
+                    <input id="search" name="search" class="px-3 p-1 outline-none  bg-transparent " tpye="text" value="" placeholder="Search student..."/>
                     <i class="self-center text-center w-full text-gray-500 border-l px-3 p-1 fa-solid fa-magnifying-glass"></i>
                     <input   class="hidden shadow-lg px-3 p-1 rounded-md text-white cursor-pointer hover:bg-purple-600 bg-purple-500" type="submit" value="Search"/>
                 </div>
                  
-            </form>
-             <select name="status" class="flex-1 text-gray-700 border p-2 rounded-md">
-                        <option value="Lab 524" selected disabled hidden>Status</option>
-                        <option value="Lab 526">Finished</option>
-                        <option value="Lab 528">OnGoing</option>
-                       
-                    </select>
-              <input type="text" id="datetimepicker" placeholder="From Date" class="outline-none px-3 rounded-md form-input w-full">
+            </div>
+              <input type="text" id="datetimepicker" placeholder="From Date" class="outline-none px-3 p-3 rounded-md form-input w-full">
             </div>
         </div>
             <!-- <form action="" method="get" class="flex justify-end w-full bg-gradient-to-l to-[#8F93FF] from-purple-400  p-5 rounded-md">
@@ -116,6 +110,34 @@ $connection->close();
             
             const students = <?php echo json_encode($students); ?>;
             console.log(students)
+
+            
+
+            function studentRow(student,statusElement,time_in,time_out) {
+                return `<tr class="odd:bg-purple-500 bg-purple-700"><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.idno}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.firstname}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.lastname}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.sessions}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.email}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${time_in}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${time_out}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${statusElement}</td></tr>`
+            }
+            $("#search").on('input', function() {
+
+                 if(this.value == "")
+                   return restore(students);
+                 let data = "";
+                    students.forEach(student => {
+                        const studentDate = student.time_in.split(' ')[0];
+                        const time_in = new Date(student.time_in).toLocaleString('en-US', { month: 'long', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                         const time_out = new Date(student.time_in).toLocaleString('en-US', { month: 'long', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                        if(student.idno == this.value) {
+                            const statusElement = student.time_out !== null 
+                            ? `<span href="#" class="text-white bg-green-500 px-3 p-2 rounded-md">Finished</span>` 
+                            : `<a href="./timeout.php?id=${student['id']}&s_id=${student['session_id']}" class="text-white bg-red-500 px-3 p-2 rounded-md">Logout</a>`;
+                            data += studentRow(student,statusElement,time_in,time_out);
+                        }
+                       
+                    })
+                   if(data != "")
+                   $("#tbody").html(data)
+                   else 
+                    $("#tbody").html('<span class="text-xl font-semibold text-purple-700 text-center w-full">No records found</span>')
+            })
             flatpickr('#datetimepicker', {
                 dateFormat: "F j, Y",
                 onChange: function(selectedDates, dateStr, instance) {
@@ -129,7 +151,7 @@ $connection->close();
                             const statusElement = student.time_out !== null 
                             ? `<span href="#" class="text-white bg-green-500 px-3 p-2 rounded-md">Finished</span>` 
                             : `<a href="./timeout.php?id=${student['id']}&s_id=${student['session_id']}" class="text-white bg-red-500 px-3 p-2 rounded-md">Logout</a>`;
-                            data += `<tr class="odd:bg-purple-500 bg-purple-700"><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.idno}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.firstname}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.lastname}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.sessions}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.email}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${time_in}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${time_out}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${statusElement}</td></tr>`
+                            data += studentRow(student,statusElement,time_in,time_out);
                         }
                        
                     })
@@ -155,14 +177,24 @@ $connection->close();
                 return formattedDate;
             }
 
-            function restore(students) {
+           function restore(students) {
                 let data= "";
-                const statusElement = student.time_out !== null 
+               
+                students.forEach(student => {
+
+                    const studentDate = student.time_in.split(' ')[0];
+                        const time_in = new Date(student.time_in).toLocaleString('en-US', { month: 'long', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                    const time_out = new Date(student.time_in).toLocaleString('en-US', { month: 'long', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                     const statusElement = student.time_out !== null 
                             ? `<span href="#" class="text-white bg-green-500 px-3 p-2 rounded-md">Finished</span>` 
                             : `<a href="./timeout.php?id=${student['id']}&s_id=${student['session_id']}" class="text-white bg-red-500 px-3 p-2 rounded-md">Logout</a>`;
-                            data += `<tr class="odd:bg-purple-500 bg-purple-700"><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.idno}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.firstname}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.lastname}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.sessions}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.email}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.time_in}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${student.time_out}</td><td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">${statusElement}</td></tr>`
+                            data += studentRow(student,statusElement,time_in,time_out);
+                })
 
-                 $("#tbody").html(data)
+                  if(data != "")
+                   $("#tbody").html(data)
+                   else 
+                    $("#tbody").html('<span class="text-xl font-semibold text-purple-700 text-center w-full">No records found</span>')
                         
             }
 

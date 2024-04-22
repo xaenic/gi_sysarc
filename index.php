@@ -77,9 +77,9 @@ body {
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">Home</a>
-  <a href="#">Manage</a>
-  <a href="#">History</a>
+  <a href="./">Home</a>
+  <a href="./profile.php">Profile</a>
+  <a href="./history.php">History</a>
   <a href="./logout.php">Log Out</a>
 </div>
 
