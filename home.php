@@ -71,6 +71,7 @@ body {
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span> 
 
 <h1 style="text-align:center; font-size:30px; font-weight:strong">Welcome Student!</h1>
+<span class="text-xs font-semibold  p-1 bg-green-500 text-white rounded-md"><?php echo $student['sessions'];?> Sessions Available</span>
  
 <br>
 <center>

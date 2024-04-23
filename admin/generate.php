@@ -169,7 +169,7 @@ $connection->close();
                    if(data != "")
                    $("#tbody").html(data)
                    else 
-                    $("#tbody").html('<span class="text-xl font-semibold text-purple-700 text-center w-full">No records found</span>')
+                    $("#tbody").html('<span class="text-xl font-semibold text-stone-800 text-center w-full">No records found</span>')
             })
             $("#purpose").change(function() {
                 filter = `by_purpose_${this.value}`
@@ -191,7 +191,7 @@ $connection->close();
                    if(data != "")
                    $("#tbody").html(data)
                    else 
-                    $("#tbody").html('<span class="text-xl font-semibold text-purple-700 text-center w-full">No records found</span>')
+                    $("#tbody").html('<span class="text-xl font-semibold text-stone-800 text-center w-full">No records found</span>')
             })
              $("#laboratory").change(function() {
                 filter = `by_laboratory_${this.value}`
@@ -213,7 +213,7 @@ $connection->close();
                    if(data != "")
                    $("#tbody").html(data)
                    else 
-                    $("#tbody").html('<span class="text-xl font-semibold text-purple-700 text-center w-full">No records found</span>')
+                    $("#tbody").html('<span class="text-xl font-semibold text-stone-800 text-center w-full">No records found</span>')
             })
           
             flatpickr('#datetimepicker', {
@@ -238,7 +238,7 @@ $connection->close();
                    if(data != "")
                    $("#tbody").html(data)
                    else 
-                    $("#tbody").html('<span class="text-xl font-semibold text-purple-700 text-center w-full">No records found</span>')
+                    $("#tbody").html('<span class="text-xl font-semibold text-stone-800 text-center w-full">No records found</span>')
                 }
             
             });
@@ -274,7 +274,7 @@ $connection->close();
                   if(data != "")
                    $("#tbody").html(data)
                    else 
-                    $("#tbody").html('<span class="text-xl font-semibold text-purple-700 text-center w-full">No records found</span>')
+                    $("#tbody").html('<span class="text-xl font-semibold text-stone-800 text-center w-full">No records found</span>')
                         
             }
 
