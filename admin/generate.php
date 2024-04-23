@@ -34,19 +34,19 @@ $connection->close();
   
 </head>
 
-<body class="bg-purple-100">
+<body class="bg-stone-200">
     <?php require './sidebar.php';?>
     <main class="flex-1 lg:ml-64  lg:mt-4 mr-4">
        <div class="flex flex-col gap-8  rounded-md">
-        <div class="flex justify-end w-full bg-gradient-to-l to-[#8F93FF] from-purple-400 text-white p-3 rounded-md">
+        <div class="flex justify-end w-full bg-gradient-to-r from-stone-500 via-stone-600 to-stone-800 p-3 rounded-md">
             <div class="flex gap-1 items-center">
                 <img src="https://innap.dexignzone.com/xhtml/images/profile/pic1.jpg" class="rounded-full w-10 h-10"/>
-                <span class="text-sm">Admin</span>
+                <span class="text-sm text-stone-50">Admin</span>
             </div>
         </div>
 
         <div class="">
-            <h1 class="font-medium text-lg text-purple-700">Generate Reports</h1>
+            <h1 class="font-medium text-lg text-stone-700">Generate Reports</h1>
               <div class="mt-3 flex justify-end ">
                 <div class="bg-green-500 text-white px-3 p-2 rounded-md flex items-center gap-3">
                     <i class="fa-solid fa-download"></i>
@@ -91,7 +91,7 @@ $connection->close();
                 </div>
             </form> -->
              <table id="oktable" class=" mb-10 w-full text-sm text-left rtl:text-right text-white rounded-lg overflow-hidden">
-                <thead class="text-xs bg-gradient-to-l t to-[#8F93FF] from-purple-400 uppercase rounded-md">
+                <thead class="text-xs bg-gradient-to-r from-zinc-800 via-stone-500 to-zinc-800 uppercase rounded-md">
                     <tr>
                         <th class="border px-4 py-4 font-medium border-none text-center font-bold">ID NO
                         </th>
@@ -110,7 +110,7 @@ $connection->close();
                 <?php 
 
             foreach ($students as $student) {
-                   echo '<tr class="odd:bg-purple-500 bg-purple-700">
+                   echo '<tr class="odd:bg-stone-500 bg-zinc-700">
                                 <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">'.$student['idno'].'</td>
                                 <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">'.$student['firstname'].' '.$student['lastname'].'</td>
                                 <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">'.$student['purpose'].'</td>

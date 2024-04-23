@@ -78,14 +78,14 @@ if(isset($_POST['id'])){
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="bg-purple-100">
+<body class="bg-stone-200">
     <?php require './sidebar.php';?>
     <main class="flex-1 lg:ml-64  lg:mt-4 mr-4">
        <div class="flex flex-col items-center  rounded-md">
-            <form action="" method="get" class="flex justify-end w-full bg-gradient-to-l to-[#8F93FF] from-purple-400  p-5 rounded-md">
+            <form action="" method="get" class="flex justify-end w-full bg-gradient-to-r from-stone-500 via-stone-600 to-stone-800  p-5 rounded-xs">
                 <div class="flex justify-end w-full">
-                    <input name="search" class="shadow-lg border px-3 p-1 rounded-md" tpye="text" value="" placeholder="Search student..."/>
-                <input  class="shadow-lg px-3 p-1 rounded-md text-white cursor-pointer hover:bg-purple-600 bg-purple-500" type="submit" value="Search"/>
+                    <input name="search" class="shadow-lg border px-3 p-1 rounded-l-lg" tpye="text" value="" placeholder="Search student..."/>
+                <input  class="shadow-lg px-3 p-1 rounded-r-lg text-white cursor-pointer hover:bg-stone-600 bg-stone-500" type="submit" value="Search"/>
                 </div>
             </form>
 
@@ -93,20 +93,20 @@ if(isset($_POST['id'])){
             
             <?php if($student != null ) { ?>
               
-            <form action="" method="post" class="flex flex-col items-center   mt-10 bg-gradient-to-t text-white to-[#8F93FF] from-purple-400  p-5 rounded-md min-w-[320px] relative">
+            <form action="" method="post" class="flex flex-col items-center   mt-10 bg-gradient-to-t from-stone-300 via-stone-500 to-stone-700  p-5 rounded-md min-w-[320px] drop-shadow-md relative">
                 
                 <div class="flex items-center justify-center w-24 h-24 bg-white rounded-full shadow-lg absolute top-[-30px]">
                     <p class="text-2xl font-boldd uppercase text-gray-700"><?php echo isset($student['firstname']) ? $student['firstname'][0] : "";  ?></p>
                 </div>
                 <div class="mt-14">
-                    <p class="text-2xl text-center font-semibold"><?php echo $student['firstname']; echo $student['lastname'] ?></p>
-                    <p class="text-center text-gray-600"><?php echo $student['idno']; ?></p>
-                    <span class="text-xs font-semibold px-2 p-1 bg-purple-500 text-white rounded-md"><?php echo $student['sessions'];?> Sessions Available</span>
+                    <p class="text-2xl text-center font-semibold text-stone-50"><?php echo $student['firstname']; echo $student['lastname'] ?></p>
+                    <p class="text-center text-yellow-200"><?php echo $student['idno']; ?></p>
+                    <span class="text-xs font-semibold px-2 p-1 bg-stone-900 text-white rounded-md"><?php echo $student['sessions'];?> Sessions Available</span>
                 </div>
                   
                <?php echo $message;?>
                 <div class="self-start flex flex-col gap-2 w-full mt-5">
-                    <label class="">Purpose of SitIn</label>
+                    <label class="text-stone-50">Purpose of SitIn</label>
                     <select name="purpose" class="text-gray-700 border p-2 rounded-md w-full">
                         <option value="Java">Java</option>
                         <option value="Python">Python</option>
@@ -118,7 +118,7 @@ if(isset($_POST['id'])){
                     
                 </div>
                 <div class="flex flex-col gap-2 w-full mt-5">
-                    <label class="">Laboratory</label>
+                    <label class="text-stone-50">Laboratory</label>
                     <select name="laboratory" class="text-gray-700 border p-2 rounded-md">
                         <option value="Lab 524">Lab 524</option>
                         <option value="Lab 526">Lab 526</option>
@@ -132,16 +132,16 @@ if(isset($_POST['id'])){
 
                   <input type="hidden" value="<?php echo $student['id'];?>" name="id"/>
                    <?php if($exist == null) {?>
-                        <input type="submit" value="Sit In" class="font-semibold cursor-pointer px-3 p-2 bg-purple-600  rounded-lg "/>
+                        <input type="submit" value="Sit In" class="font-semibold cursor-pointer px-3 p-2 bg-stone-800 text-stone-50 rounded-lg "/>
                     <?php } else {?>
                         <a href="./timeout.php?id=<?php echo $student['id'];?>&s_id=<?php echo $exist['session_id'];?>" class="text-white bg-red-500 px-3 p-2 rounded-md">Logout</a>
                     <?php }?>
-                    <a href="./delete.php?id=<?php echo $student['id'];?>" class="font-semibold cursor-pointer px-3 p-2  rounded-md bg-red-500">Delete</a>
+                    <a href="./delete.php?id=<?php echo $student['id'];?>" class="font-semibold cursor-pointer px-3 p-2  rounded-md bg-red-500 text-stone-50">Delete</a>
                 </div>
             </form>
-             <h1 class="text-xl font-semibold text-purple-600 mt-5"><?php echo $student['firstname'];?>'s Sit In Records</h1>               
+             <h1 class="text-xl font-semibold text-stoness-600 mt-5"><?php echo $student['firstname'];?>'s Sit In Records</h1>               
             <table class="my-5 mb-10 mx-5 w-full text-sm text-left rtl:text-right text-white rounded-lg overflow-hidden">
-                <thead class="text-xs bg-gradient-to-l t to-[#8F93FF] from-purple-400 uppercase rounded-md">
+                <thead class="text-xs bg-gradient-to-r from-zinc-800 via-stone-500 to-zinc-800 uppercase rounded-md">
                     <tr>
                        
                         <th class="border px-4 py-4 font-medium border-none  text-center">SESSION ID</th>
@@ -158,7 +158,7 @@ if(isset($_POST['id'])){
                 <?php 
 
             foreach ($sessions as $session) {
-                   echo '<tr class="odd:bg-purple-500 bg-purple-700">
+                   echo '<tr class="odd:bg-stone-500 bg-zinc-700">
                                 <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">'.$session['session_id'].'</td>
                                 <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">'.$session['purpose'].'</td>
                                 <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">'.$session['laboratory'].'</td>

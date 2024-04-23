@@ -31,9 +31,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body class="bg-purple-100 text-white">
+<body class="bg-stone-200 text-white">
     <div class="container mx-auto flex mt-32 justify-center ">
-        <div class="forms bg-gradient-to-t to-[#8F93FF] from-purple-400 p-10 rounded-md  min-w-[400px]">
+        <div class="forms bg-zinc-800-r from-zinc-800 via-stone-800 to-zinc-800 p-10 rounded-md  min-w-[400px]">
             <div class="form-content">
                 <div class="login-form">
                     <div class="title text-xl font-bold text-center">Admin Dashboard</div>
@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             </div>
                             <div class="button input-box">
                                 <input type="submit" value="Login"
-                                    class=" w-full bg-purple-600 p-2 rounded-md text-white cursor-pointer">
+                                    class=" w-full bg-gradient-to-r from-stone-300 to-neutral-500 p-2 rounded-md text-white cursor-pointer">
                             </div>
                            
                         </div>
