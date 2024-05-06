@@ -79,6 +79,7 @@ body {
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="./">Home</a>
   <a href="./profile.php">Profile</a>
+  <a href="./report.php">Report</a>
   <a href="./history.php">History</a>
   <a href="./logout.php">Log Out</a>
 </div>
@@ -89,43 +90,38 @@ body {
 <div class="w-full flex items-center flex-col">
   <h1 style="text-align:center; font-size:30px; font-weight:strong">Welcome <?php echo $_SESSION['firstname'];?>!</h1>
 <span class="text-xs font-semibold px-2 p-1 bg-purple-500 text-white rounded-md text-center self-center"><?php echo $sessions?> Sessions Available</span> 
+
+<div class=" mt-8 bg-white rounded-lg shadow-lg p-8 mx-28 w-full">
+        <h2 class="text-2xl font-semibold mb-4 text-center">LABORATORY RULES AND REGULATIONS</h2>
+        <ol class="list-decimal pl-6">
+            <li class="mb-2">Maintain silence, proper decorum, and discipline inside the laboratory. Mobile phones, walkmans and other personal pieces of equipment must be switched off.</li>
+            <li class="mb-2">Games are not allowed inside the lab. This includes computer-related games, card games and other games that may disturb the operation of the lab.</li>
+            <li class="mb-2">Surfing the Internet is allowed only with the permission of the instructor. Downloading and installing of software are strictly prohibited.</li>
+            <li class="mb-2">Getting access to other websites not related to the course (especially pornographic and illicit sites) is strictly prohibited.</li>
+            <li class="mb-2">Deleting computer files and changing the set-up of the computer is a major offense.</li>
+            <li class="mb-2">Observe computer time usage carefully. A fifteen-minute allowance is given for each use. Otherwise, the unit will be given to those who wish to “sit-in”.</li>
+            <li class="mb-2">Observe proper decorum while inside the laboratory:
+                <ol class="list-disc pl-6">
+                    <li>Do not get inside the lab unless the instructor is present.</li>
+                    <li>All bags, knapsacks, and the likes must be deposited at the counter.</li>
+                    <li>Follow the seating arrangement of your instructor.</li>
+                    <li>At the end of class, all software programs must be closed.</li>
+                    <li>Return all chairs to their proper places after using.</li>
+                </ol>
+            </li>
+            <li class="mb-2">Chewing gum, eating, drinking, smoking, and other forms of vandalism are prohibited inside the lab.</li>
+            <li class="mb-2">Anyone causing a continual disturbance will be asked to leave the lab. Acts or gestures offensive to the members of the community, including public display of physical intimacy, are not tolerated.</li>
+            <li class="mb-2">Persons exhibiting hostile or threatening behavior such as yelling, swearing, or Disregarding requests made by lab personnel will be asked to leave the lab.</li>
+            <div class="bg-slate-200 p-6 rounded-lg shadow-md">
+            <h2 class="text-lg font-semibold mb-4">DISCIPLINARY ACTION</h2>
+            <p class="mb-2"><strong>First Offense:</strong> The Head or the Dean or OIC recommends to the Guidance Center for a suspension from classes for each offender.</p>
+            <p class="mb-2"><strong>Second and Subsequent Offenses:</strong> A recommendation for a heavier sanction will be endorsed to the Guidance Center.</p>
+        </div>
+        </ol>
+    </div>
 </div>
 <br>
 <center>
-    <!-- <div style="padding:50px; background-color:#E0DFE2; width:500px; height: 250; border-radius: 25px; text-align:left" class="relative">
-    
-   <h7 style= "text-align:center"> Find a Schedule </h7> <br>
-    <br>
-               
-                Date
-    <input    
-                style="padding: 5px; border-radius: 8px"
-                class="form-control"
-                name="dep_date" 
-                type="date"  
-                onFocus="this.value = '';" 
-                onBlur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
-               
-                Time
-     <input 
-                style="padding: 5px; border-radius: 8px"
-                class="form-control"
-                type="time" 
-                id="appt" 
-                onFocus="this.value = '';" 
-                name="appt"> -->
-
-<!--       
-                <form action="/action_page.php">
-                  <br>
-  <label for="fname" style="padding-right: 30px;">Name</label>
-  <input type="text" id="fname" name="fname" style="padding: 5px; border-radius: 8px"> <br> 
-  <label for="lname" style="padding-right: 22px;">Course</label>
-  <input type="text" id="fname" name="fname" style="padding: 5px; border-radius: 8px"> <br> 
-  <label for="lname" style="padding-right: 19px;">Subject</label>
-  <input type="text" id="fname" name="fname" style="padding: 5px; border-radius: 8px"> <br>
-  <input type="submit" value="Submit">
-</form> -->
 </center>
 </div>
 	</div>

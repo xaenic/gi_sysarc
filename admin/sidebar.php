@@ -21,6 +21,12 @@ $dashboard = isset($_SESSION['role']) ? '/dashboard' : '/admin/dashboard';
             <a href="./records.php" class="w-full">View Records</a>
             </div>
         </section>
+         <section id="widget_2" class="mt-5 flex flex-col gap-5">
+            <div class="flex gap-2 items-center <?php echo($page == 'Reports' ? 'bg-stone-800' : '' ) ?> text-sm   cursor-pointer text-white rounded-xs px-3 p-2">
+            <i class="fa-solid fa-eye"></i>    
+            <a href="./reports.php" class="w-full">Reports / Feedback</a>
+            </div>
+        </section>
         <!-- test -->
         <section id="widget_2" class="mt-5 flex flex-col gap-5">
             <div class="flex gap-2 items-center <?php echo($page == 'Generate Reports' ? 'bg-stone-800' : '' ) ?> text-sm cursor-pointer text-white rounded-xs px-3 p-2">
