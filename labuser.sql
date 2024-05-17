@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2024 at 05:21 PM
+-- Generation Time: May 16, 2024 at 01:17 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `labuser`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `announcement`
+--
+
+CREATE TABLE `announcement` (
+  `id` int(11) NOT NULL,
+  `content` varchar(254) NOT NULL,
+  `title` varchar(254) NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `name` varchar(254) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `announcement`
+--
+
+INSERT INTO `announcement` (`id`, `content`, `title`, `date_created`, `name`) VALUES
+(1, 'asdada', 'asdasd', '2024-05-16 04:46:47', 'admin'),
+(2, 'dadada', 'asdas', '2024-05-16 04:47:19', 'admin'),
+(3, 'ewewew', 'wewew', '2024-05-16 04:47:22', 'admin'),
+(4, 'asdad', 'sadsad', '2024-05-16 04:47:30', 'admin');
 
 -- --------------------------------------------------------
 
@@ -109,6 +133,12 @@ INSERT INTO `student` (`id`, `email`, `password`, `firstname`, `lastname`, `midd
 --
 
 --
+-- Indexes for table `announcement`
+--
+ALTER TABLE `announcement`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `feedback`
 --
 ALTER TABLE `feedback`
@@ -131,6 +161,12 @@ ALTER TABLE `student`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `announcement`
+--
+ALTER TABLE `announcement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `feedback`
