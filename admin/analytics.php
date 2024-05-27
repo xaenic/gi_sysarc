@@ -46,9 +46,7 @@ $records_json = json_encode($records);
         }
 
         .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+          
             height: 100vh;
         }
 
@@ -65,78 +63,139 @@ $records_json = json_encode($records);
 
 <body class="bg-stone-200">
      <?php require './sidebar.php';?>
-    <div class="container ">
-        <div class="chart-container">
+      
+    <div class="container flex flex-col items-center justify-center">
+        <div class="">
+            <div class="flex flex-col">
+                <labe>Select Day</labe>
+                  <input type="text" id="datetimepicker" placeholder="From Date" class="outline-none px-3 p-3 rounded-md form-input w-full">
+
+            </div>
+        </div>
+        <div class="flex justify-center w-full">
+             <div class="chart-container 1">
             <canvas id="purposeChart"></canvas>
         </div>
-        <div class="chart-container">
+        <div class="chart-container 2">
             <canvas id="laboratoryChart"></canvas>
         </div>
+        </div>
+       
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-        var records_json = <?php echo $records_json; ?>;
+    var records_json = <?php echo $records_json; ?>;
 
-        // Process data to create datasets by purpose
-        var purposes = {};
-        records_json.forEach(function(record) {
-            var key = record.purpose;
-            if (!purposes[key]) {
-                purposes[key] = 0;
+var purposeChart;
+var laboratoryChart;
+
+flatpickr('#datetimepicker', {
+    dateFormat: "F j, Y",
+    onChange: function(selectedDates, dateStr, instance) {
+        const selectedDate = formatDate(dateStr);
+        let filteredRecords = [];
+        let old = records_json;
+        records_json.forEach(student => {
+              console.log(selectedDate)
+            const studentDate = student.time_in.split(' ')[0];
+          
+            if (selectedDate === studentDate) {
+                 console.log('yes')
+                filteredRecords.push(student);
             }
-            purposes[key]++;
         });
+        
+        // Log filtered records to ensure they are being updated correctly
+        chartt(filteredRecords);
 
-        // Prepare purpose chart data
-        var purposeLabels = Object.keys(purposes);
-        var purposeCounts = Object.values(purposes);
+    }
+});
 
-        // Process data to create datasets by laboratory
-        var laboratories = {};
-        records_json.forEach(function(record) {
-            var key = record.laboratory;
-            if (!laboratories[key]) {
-                laboratories[key] = 0;
-            }
-            laboratories[key]++;
-        });
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    return formattedDate;
+}
 
-        // Prepare laboratory chart data
-        var laboratoryLabels = Object.keys(laboratories);
-        var laboratoryCounts = Object.values(laboratories);
+function chartt(records_json) {
+    var purposes = {};
+    records_json.forEach(function(record) {
+        var key = record.purpose;
+        if (!purposes[key]) {
+            purposes[key] = 0;
+        }
+        purposes[key]++;
+    });
 
-        // Purpose chart
-        var ctxPurpose = document.getElementById('purposeChart').getContext('2d');
-        var purposeChart = new Chart(ctxPurpose, {
-            type: 'pie',
-            data: {
-                labels: purposeLabels,
-                datasets: [{
-                    data: purposeCounts,
-                    backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
-                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
-                    borderWidth: 1
-                }]
-            },
-            options: {}
-        });
+    var purposeLabels = Object.keys(purposes);
+    var purposeCounts = Object.values(purposes);
 
-        // Laboratory chart
-        var ctxLaboratory = document.getElementById('laboratoryChart').getContext('2d');
-        var laboratoryChart = new Chart(ctxLaboratory, {
-            type: 'pie',
-            data: {
-                labels: laboratoryLabels,
-                datasets: [{
-                    data: laboratoryCounts,
-                    backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
-                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
-                    borderWidth: 1
-                }]
-            },
-            options: {}
-        });
+    var laboratories = {};
+    records_json.forEach(function(record) {
+        var key = record.laboratory;
+        if (!laboratories[key]) {
+            laboratories[key] = 0;
+        }
+        laboratories[key]++;
+    });
+
+    var laboratoryLabels = Object.keys(laboratories);
+    var laboratoryCounts = Object.values(laboratories);
+
+    // Log chart data to ensure it's being calculated correctly
+    console.log("Purpose Labels: ", purposeLabels);
+    console.log("Purpose Counts: ", purposeCounts);
+    console.log("Laboratory Labels: ", laboratoryLabels);
+    console.log("Laboratory Counts: ", laboratoryCounts);
+
+    // Destroy existing charts if they exist
+    if (purposeChart) {
+        purposeChart.destroy();
+    }
+    if (laboratoryChart) {
+        laboratoryChart.destroy();
+    }
+
+    // Create new purpose chart
+    var ctxPurpose = document.getElementById('purposeChart').getContext('2d');
+    purposeChart = new Chart(ctxPurpose, {
+        type: 'pie',
+        data: {
+            labels: purposeLabels,
+            datasets: [{
+                data: purposeCounts,
+                backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
+                borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {}
+    });
+
+    // Create new laboratory chart
+    var ctxLaboratory = document.getElementById('laboratoryChart').getContext('2d');
+    laboratoryChart = new Chart(ctxLaboratory, {
+        type: 'pie',
+        data: {
+            labels: laboratoryLabels,
+            datasets: [{
+                data: laboratoryCounts,
+                backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)'],
+                borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {}
+    });
+}
+
+// Initial call to display charts with initial data
+chartt(records_json);
+
     </script>
 </body>
 
