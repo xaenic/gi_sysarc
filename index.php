@@ -84,7 +84,7 @@ body {
   <h1 style="text-align:center; font-size:30px; font-weight:strong">Welcome <?php echo $_SESSION['firstname'];?>!</h1>
 <span class="text-xs font-semibold px-2 p-1 bg-purple-500 text-white rounded-md text-center self-center"><?php echo $sessions?> Sessions Available</span> 
 
-<div class=" mt-8 bg-white rounded-lg shadow-lg p-8 mx-28 w-full">
+<div class=" mt-8 bg-white rounded-lg shadow-lg p-8 w-full md:w-2/3 lg:w-1/2">
         <h2 class="text-2xl font-semibold mb-4 text-center">LABORATORY RULES AND REGULATIONS</h2>
         <ol class="list-decimal pl-6">
             <li class="mb-2">Maintain silence, proper decorum, and discipline inside the laboratory. Mobile phones, walkmans and other personal pieces of equipment must be switched off.</li>
