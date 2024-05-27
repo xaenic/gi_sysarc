@@ -137,7 +137,12 @@ if(isset($_POST['id'])){
                         <a href="./timeout.php?id=<?php echo $student['id'];?>&s_id=<?php echo $exist['session_id'];?>" class="text-white bg-red-500 px-3 p-2 rounded-md">Logout</a>
                     <?php }?>
                     <a href="./delete.php?id=<?php echo $student['id'];?>" class="font-semibold cursor-pointer px-3 p-2  rounded-md bg-red-500 text-stone-50">Delete</a>
+                  
                 </div>
+                  <div class="mt-10">
+                        <a href="./reset_password.php?id=<?php echo $student['id'];?>" class="font-semibold cursor-pointer px-3 p-2  rounded-md bg-blue-500 text-stone-50">Reset Password</a>
+                    <a href="./reset_sessions.php?id=<?php echo $student['id'];?>" class="font-semibold cursor-pointer px-3 p-2  rounded-md bg-sky-500 text-stone-50">Reset Sessions</a>
+                    </div>
             </form>
              <h1 class="text-xl font-semibold text-stoness-600 mt-5"><?php echo $student['firstname'];?>'s Sit In Records</h1>               
             <table class="my-5 mb-10 mx-5 w-full text-sm text-left rtl:text-right text-white rounded-lg overflow-hidden">
