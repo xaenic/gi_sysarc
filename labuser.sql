@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2024 at 02:37 PM
+-- Generation Time: May 27, 2024 at 08:29 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -69,7 +69,10 @@ CREATE TABLE `bookings` (
 INSERT INTO `bookings` (`id`, `student_id`, `purpose`, `laboratory`, `reservation_date`, `date_created`, `status`) VALUES
 (8, 18, 'Java', 'Lab 524', '2024-05-27', '2024-05-27 19:49:13', 'Cancelled'),
 (9, 18, 'Java', 'Lab 524', '2024-05-31', '2024-05-27 20:03:41', 'Approved'),
-(10, 18, 'Java', 'Lab 524', '2024-05-29', '2024-05-27 20:09:40', 'Rejected');
+(10, 18, 'Java', 'Lab 524', '2024-05-29', '2024-05-27 20:09:40', 'Rejected'),
+(11, 18, 'Java', 'Lab 524', '2024-05-29', '2024-05-28 02:15:04', 'Approved'),
+(12, 18, 'Java', 'Lab 524', '2024-05-28', '2024-05-28 02:16:39', 'Approved'),
+(13, 18, 'Java', 'Lab 524', '2024-05-29', '2024-05-28 02:19:37', 'Approved');
 
 -- --------------------------------------------------------
 
@@ -105,7 +108,7 @@ CREATE TABLE `sessions` (
   `student_id` int(11) NOT NULL,
   `laboratory` varchar(254) NOT NULL,
   `purpose` varchar(254) NOT NULL,
-  `time_in` datetime NOT NULL DEFAULT current_timestamp(),
+  `time_in` datetime DEFAULT current_timestamp(),
   `time_out` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -124,7 +127,11 @@ INSERT INTO `sessions` (`session_id`, `student_id`, `laboratory`, `purpose`, `ti
 (25, 18, 'Lab 524', 'Java', '2024-03-26 01:20:21', '2024-03-26 01:20:21'),
 (26, 18, 'Lab 524', 'Java', '2024-03-26 01:20:41', '2024-03-26 01:20:42'),
 (27, 18, 'Lab 524', 'Java', '2024-05-27 18:55:53', '2024-05-27 18:55:54'),
-(28, 18, 'Lab 524', 'Python', '2024-05-27 20:35:52', '2024-05-27 20:35:53');
+(28, 18, 'Lab 524', 'Python', '2024-05-27 20:35:52', '2024-05-27 20:35:53'),
+(29, 18, 'Lab 524', 'Java', '2024-05-28 02:04:54', '2024-05-28 02:04:58'),
+(31, 18, 'Lab 524', 'Java', '2024-05-28 02:16:54', '2024-05-28 02:17:33'),
+(32, 18, 'Lab 524', 'Java', '2024-05-28 02:17:39', '2024-05-28 02:19:41'),
+(33, 18, 'Lab 524', 'Java', '2024-05-28 02:27:56', '2024-05-28 02:28:01');
 
 -- --------------------------------------------------------
 
@@ -154,7 +161,7 @@ CREATE TABLE `student` (
 INSERT INTO `student` (`id`, `email`, `password`, `firstname`, `lastname`, `middlename`, `age`, `gender`, `address`, `phone`, `idno`, `sessions`) VALUES
 (2, 'kira@gmail.com', '123', 'tan', 'kira', 'MELVIN', 2, 'male', 'sdsadsa', 2147483647, 21322, 29),
 (17, 'allanvillegas35@gmail.com', '123123', 'Ako l', 'Hehe', 'Caba', 26, 'Male', 'asdasdas', 231321, 214190231, 30),
-(18, 'allanv@gmail.com', '1234', 'Allan ', 'Vil', 'Caa', 27, 'Male', 'asdasdsa', 21312312, 21419023, 29);
+(18, 'allanv@gmail.com', '1234', 'Allan ', 'Vil', 'Caa', 27, 'Male', 'asdasdsa', 21312312, 21419023, 25);
 
 --
 -- Indexes for dumped tables
@@ -207,7 +214,7 @@ ALTER TABLE `announcement`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -219,7 +226,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `student`
