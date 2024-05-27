@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2024 at 01:17 AM
+-- Generation Time: May 27, 2024 at 02:37 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,7 +43,33 @@ INSERT INTO `announcement` (`id`, `content`, `title`, `date_created`, `name`) VA
 (1, 'asdada', 'asdasd', '2024-05-16 04:46:47', 'admin'),
 (2, 'dadada', 'asdas', '2024-05-16 04:47:19', 'admin'),
 (3, 'ewewew', 'wewew', '2024-05-16 04:47:22', 'admin'),
-(4, 'asdad', 'sadsad', '2024-05-16 04:47:30', 'admin');
+(4, 'asdad', 'sadsad', '2024-05-16 04:47:30', 'admin'),
+(5, 'test', 'Test', '2024-05-27 12:30:43', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookings`
+--
+
+CREATE TABLE `bookings` (
+  `id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `purpose` varchar(254) NOT NULL,
+  `laboratory` varchar(254) NOT NULL,
+  `reservation_date` date NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` varchar(254) NOT NULL DEFAULT 'Pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `student_id`, `purpose`, `laboratory`, `reservation_date`, `date_created`, `status`) VALUES
+(8, 18, 'Java', 'Lab 524', '2024-05-27', '2024-05-27 19:49:13', 'Cancelled'),
+(9, 18, 'Java', 'Lab 524', '2024-05-31', '2024-05-27 20:03:41', 'Approved'),
+(10, 18, 'Java', 'Lab 524', '2024-05-29', '2024-05-27 20:09:40', 'Rejected');
 
 -- --------------------------------------------------------
 
@@ -96,7 +122,9 @@ INSERT INTO `sessions` (`session_id`, `student_id`, `laboratory`, `purpose`, `ti
 (23, 18, 'Lab 524', 'Java', '2024-03-26 01:20:11', '2024-03-26 01:20:11'),
 (24, 18, 'Lab 524', 'Java', '2024-03-26 01:20:16', '2024-03-26 01:20:16'),
 (25, 18, 'Lab 524', 'Java', '2024-03-26 01:20:21', '2024-03-26 01:20:21'),
-(26, 18, 'Lab 524', 'Java', '2024-03-26 01:20:41', '2024-03-26 01:20:42');
+(26, 18, 'Lab 524', 'Java', '2024-03-26 01:20:41', '2024-03-26 01:20:42'),
+(27, 18, 'Lab 524', 'Java', '2024-05-27 18:55:53', '2024-05-27 18:55:54'),
+(28, 18, 'Lab 524', 'Python', '2024-05-27 20:35:52', '2024-05-27 20:35:53');
 
 -- --------------------------------------------------------
 
@@ -126,7 +154,7 @@ CREATE TABLE `student` (
 INSERT INTO `student` (`id`, `email`, `password`, `firstname`, `lastname`, `middlename`, `age`, `gender`, `address`, `phone`, `idno`, `sessions`) VALUES
 (2, 'kira@gmail.com', '123', 'tan', 'kira', 'MELVIN', 2, 'male', 'sdsadsa', 2147483647, 21322, 29),
 (17, 'allanvillegas35@gmail.com', '123123', 'Ako l', 'Hehe', 'Caba', 26, 'Male', 'asdasdas', 231321, 214190231, 30),
-(18, 'allanv@gmail.com', '123123', 'Allan ', 'Vil', 'Caa', 27, 'Male', 'asdasdsa', 21312312, 21419023, 13);
+(18, 'allanv@gmail.com', '1234', 'Allan ', 'Vil', 'Caa', 27, 'Male', 'asdasdsa', 21312312, 21419023, 29);
 
 --
 -- Indexes for dumped tables
@@ -137,6 +165,13 @@ INSERT INTO `student` (`id`, `email`, `password`, `firstname`, `lastname`, `midd
 --
 ALTER TABLE `announcement`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_stundet_bookings` (`student_id`);
 
 --
 -- Indexes for table `feedback`
@@ -166,7 +201,13 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -178,7 +219,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `student`
@@ -189,6 +230,12 @@ ALTER TABLE `student`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD CONSTRAINT `fk_stundet_bookings` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `feedback`

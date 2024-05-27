@@ -50,7 +50,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <script src="https://cdn.tailwindcss.com"></script>
+          <script src="./tailwind1.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body class="min-h-screen flex items-center justify-center bg-purple-100">

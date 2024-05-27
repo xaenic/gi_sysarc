@@ -6,32 +6,25 @@ if(!isset($_SESSION['firstname']))
 if(isset($_SESSION['role']))
   header("location: ./admin");
 include('connector.php'); 
-$message = "";
+$announcements = [];
 $id = $_SESSION['id'];
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $feedback = $_POST['feedback'];
+$select = "SELECT * FROM announcement ORDER BY date_created desc";
+$result = $connection->query($select);
 
-    if($feedback == ""){
 
-      $message = '<span class="text-rose-500 text-lg font-medium">Message is required</span>';
-    }else {
-       $query = "INSERT INTO feedback (student_id,content) VALUES('$id','$feedback')";
-       $result = $connection->query($query);
-       if (!$result) {
-          $errorMessage = "Error: " . $connection->error;
-          return;
-        }
-
-        $message= '<span class="text-green-500 text-lg font-medium">Report submitted!</span>';
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $announcements[] = $row;
     }
 }
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="./tailwind1.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
@@ -87,28 +80,42 @@ body {
 </style>
 </head>
 <body>
-
 <?php include('side.php');?>
-
 <div id="main">
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span> 
 
-<div class="w-full flex items-center flex-col gap-7">
-  <h1 style="text-align:center; font-size:30px; font-weight:strong ">Report A Problem</h1>
-  <?php echo $message?>
-  <div class="border border-gray-200 rounded-md p-10">
-     <form  action="" method="post"class="flex flex-col gap-3">
-            <Label>Write a message</Label>
-            <div class="bg-slate-200 text-black rounded-md px-3 p-2 text-sm">
-                <textarea id="feedback" name="feedback" rows="4" cols="50" class="bg-transparent outline-none"></textarea>
-            </div>
-             
-            <button class="bg-green-500 text-white rounded-md px-3 p-2">Submit Report</button>
+<div class="w-full flex items-center flex-col container mx-auto">
+  <h1 style="text-align:center; font-size:30px; font-weight:strong">Announcements</h1> 
+  <div class="grid grid-cols-3 w-full px-20 gap-4 mt-10">
+
+    <?php foreach($announcements as $ann): ?>
+      <div class="h-56 overflow-y-auto bg-white border shadow-lg p-3 rounded-lg">
+        <div class="pb-2 border-b flex justify-between items-center">
+
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full hover:border hover:p-1 bg-gray-700 text-white flex items-center justify-center">A</div>
+          <div class="flex flex-col">
+            <span class="font-medium text-sm">From</span>
+            <span class="text-sm capitalize"><?php echo $ann['name'];?></span>
+          </div>
         </div>
-     </form>
+        <div class="flex flex-col">
+          <span class="font-medium">Posted On</span>
+          <span class="text-sm"><?php echo $formatted_date = date('F j, Y g:i A', strtotime($ann['date_created']));?></span>
+        </div>
+        </div>
+        <div class="mt-3">
+          <h1 class="font-bold mb-2"><?php echo $ann['title'];?></h1>
+          <p class="text-sm"><?php echo $ann['content'];?></p>
+        </div>
+      </div>
+    <?php endforeach;?>
   </div>
-</div>
+</div>  
 <br>
+<center>
+
+</center>
 </div>
 	</div>
 
