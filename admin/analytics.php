@@ -9,7 +9,7 @@ if (!isset($_SESSION['role'])) {
 require './db.php';
 
 $records = [];
-$query = "SELECT * FROM sessions";
+$query = "SELECT * FROM sessions  WHERE time_out IS NOT NULL ORDER BY time_out asc";
 $result = $connection->query($query);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {

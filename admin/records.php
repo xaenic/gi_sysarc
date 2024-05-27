@@ -7,7 +7,7 @@ header("Location: ./login.php");
 require './db.php';
 
 $students = [];
-$query = "SELECT * FROM sessions INNER JOIN student ON student.id = sessions.student_id ORDER BY time_out asc";
+$query = "SELECT * FROM sessions INNER JOIN student ON student.id = sessions.student_id ORDER BY time_out desc";
 $result = $connection->query($query);
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
@@ -85,15 +85,25 @@ $connection->close();
                 <?php 
 
             foreach ($students as $student) {
+
+                    $timeout = $student['time_out'] != null ? date('F j, Y H:i:s', strtotime($student['time_out'])) : "";
+                    $timein = $student['time_in'] != null ? date('F j, Y H:i:s', strtotime($student['time_in'])) : '<a href="./timein.php?id='.$student['id'].'&s_id='.$student['session_id'].'" class="text-white bg-green-500 px-3 p-2 rounded-md">Time In</a>';
                    echo '<tr class="odd:bg-stone-500 bg-zinc-700">
-                                <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">'.$student['idno'].'</td>
-                                <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">'.$student['firstname'].'</td>
-                                <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">'.$student['lastname'].'</td>
-                                <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">'.$student['sessions'].'</td>
-                                <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">'.$student['email'].'</td>
-                                <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">'.date('F j, Y H:i:s', strtotime($student['time_in'])).'</td>
-                                <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">'.date('F j, Y H:i:s', strtotime($student['time_out'])).'</td>
-                                <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">' . ($student['time_out'] !== null ? '<span href="#" class="text-white bg-green-500 px-3 p-2 rounded-md">Finished</span>' : '<a href="./timeout.php?id='.$student['id'].'&s_id='.$student['session_id'].'" class="text-white bg-red-500 px-3 p-2 rounded-md">Logout</a>') . '</td></tr>';
+                        <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">' . $student['idno'] . '</td>
+                        <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">' . $student['firstname'] . '</td>
+                        <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">' . $student['lastname'] . '</td>
+                        <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">' . $student['sessions'] . '</td>
+                        <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">' . $student['email'] . '</td>
+                        <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">' . $timein . '</td>
+                        <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">' . $timeout . '</td>
+                        <td class="border px-4 py-4 border-none text-center text-xs md:text-sm text-white">' . 
+                            ($student['time_out'] !== null 
+                                ? '<span class="text-white bg-green-500 px-3 p-2 rounded-md">Finished</span>' 
+                                : ($student['time_in'] !== null 
+                                    ? '<a href="./timeout.php?id=' . $student['id'] . '&s_id=' . $student['session_id'] . '" class="text-white bg-red-500 px-3 p-2 rounded-md">Logout</a>' 
+                                    : '')
+                        ) . '</td>
+                    </tr>';
                 }
             ?>
 
